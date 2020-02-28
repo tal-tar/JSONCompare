@@ -5,59 +5,58 @@ let isPerfectON = false;
 // Initializes textareas
 
 (function () {
-  const config = {
-    mode: { name: "javascript", json: true },
-    theme: "dracula",
-    matchBrackets: true,
-    gutters: ["CodeMirror-lint-markers", "CodeMirror-foldgutter"],
-    lint: true,
-    viewportMargin: Infinity,
-    lineNumbers: true,
-    extraKeys: {
-      F11: function (cm) {
-        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-      },
-      Esc: function (cm) {
-        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-      },
-      "Shift-Tab": function (cm) {
-        cm.setValue(JSON.stringify(JSON.parse(cm.getValue()), null, 2));
-      },
-      "Ctrl-Q": function (cm) {
-        cm.foldCode(cm.getCursor());
-      },
-    },
-    foldGutter: true,
-    foldOptions: {
-      widget: (from, to) => {
-        let count = undefined;
-
-        // Get open / close token
-        let startToken = "{",
-          endToken = "}";
-        let prevLine = leftTextarea.getLine(from.line);
-        if (prevLine.lastIndexOf("[") > prevLine.lastIndexOf("{")) {
-          (startToken = "["), (endToken = "]");
-        }
-
-        // Get json content
-        let internal = leftTextarea.getRange(from, to);
-        let toParse = startToken + internal + endToken;
-
-        // Get key count
-        try {
-          let parsed = JSON.parse(toParse);
-          count = Object.keys(parsed).length;
-        } catch (e) {}
-
-        return count ? `\u21A4${count}\u21A6` : "\u2194";
-      },
-    },
-  };
-
   let textareas = [leftTextarea, rightTextarea];
   $("textarea").each(function (index) {
-    textareas[index] = CodeMirror.fromTextArea($(this)[0], config);
+    textareas[index] = CodeMirror.fromTextArea($(this)[0], {
+      mode: { name: "javascript", json: true },
+      theme: "dracula",
+      matchBrackets: true,
+      gutters: ["CodeMirror-lint-markers", "CodeMirror-foldgutter"],
+      lint: true,
+      viewportMargin: Infinity,
+      lineNumbers: true,
+      extraKeys: {
+        F11: function (cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        Esc: function (cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        },
+        "Shift-Tab": function (cm) {
+          cm.setValue(JSON.stringify(JSON.parse(cm.getValue()), null, 2));
+        },
+        "Ctrl-Q": function (cm) {
+          cm.foldCode(cm.getCursor());
+        },
+      },
+      foldGutter: true,
+      foldOptions: {
+        widget: (from, to) => {
+          let count = undefined;
+
+          // Get open / close token
+          let startToken = "{",
+            endToken = "}";
+          let prevLine = textareas[index].getLine(from.line);
+          if (prevLine.lastIndexOf("[") > prevLine.lastIndexOf("{")) {
+            (startToken = "["), (endToken = "]");
+          }
+
+          // Get json content
+          let internal = textareas[index].getRange(from, to);
+          let toParse = startToken + internal + endToken;
+
+          // Get key count
+          try {
+            let parsed = JSON.parse(toParse);
+            count = Object.keys(parsed).length;
+          } catch (e) {}
+
+          return count ? `\u21A4${count}\u21A6` : "\u2194";
+        },
+      },
+    });
+
     textareas[index].on("change", function () {
       if (isPerfectON) {
         perfectOFF();
@@ -69,9 +68,6 @@ let isPerfectON = false;
   leftTextarea = textareas[0];
   rightTextarea = textareas[1];
 })();
-
-// console.log(leftTextarea);
-//leftTextarea.foldCode(CodeMirror.Pos(6, 0));
 
 function perfectON() {
   $(".CodeMirror").addClass("noDifference");
