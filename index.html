@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <title>JSON Compare</title>
+    <link rel="icon" href="Assets/json-file-white.png"></link>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="bootsrap.css" />
+    <link rel="stylesheet" href="styling.css" />
+    <link rel="stylesheet" href="lib/codemirror.css" />
+    <link rel="stylesheet" href="theme/dracula.css" />
+    <link rel="stylesheet" href="addon/lint/lint.css" />
+    <link rel="stylesheet" href="addon/fullscreen/fullscreen.css" />
+    <link rel="stylesheet" href="addon/fold/foldgutter.css" />
+  </head>
+
+  <body>
+    <div class="row">
+      <div class="col-md-6" id="inputCol">
+        <input type="text" value="change me" />
+      </div>
+      <div class="col-md-6" id="inputCol">
+        <input type="text" value="change me" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" id="left">
+        <textarea>
+          {
+            "glossary": {
+              "title": "example glossary",
+              "GlossDiv": {
+                "title": "S",
+                "GlossList": {
+                  "GlossEntry": {
+                    "ID": "SGML",
+                    "men": 1,
+                    "SortAs": "SGML",
+                    "GlossTerm": "Standard Generalized Markup Language",
+                    "Acronym": "SGML",
+                    "Abbrev": "ISO 8879:1986",
+                    "GlossDef": {
+                      "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                      "GlossSeeAlso": [
+                        "GML",
+                        "XML"
+                      ]
+                    },
+                    "GlossSee": "markup",
+                    "arr": [
+                      {
+                        "tal": 3,
+                        "oscar": 1
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+      </textarea
+        >
+      </div>
+      <div class="col-md-6" id="right">
+        <textarea>
+          {
+            "glossary": {
+              "title": "example glossary",
+              "GlossDiv": {
+                "title": "S",
+                "GlossList": {
+                  "GlossEntry": {
+                    "ID": "SGML",
+                    "SortAs": "SGL",
+                    "men": 2,
+                    "women": 9,
+                    "GlossTerm": "Standard Generalized Markup Language",
+                    "Acronym": "SGML",
+                    "Abbrev": "ISO 8879:1986",
+                    "GlossDef": {
+                      "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                      "GlossSeeAlso": [
+                        "GML",
+                        "XML",
+                        "OMR"
+                      ]
+                    },
+                    "GlossSee": "makup"
+                  }
+                }
+              }
+            }
+          }
+       </textarea
+        >
+      </div>
+    </div>
+    <div class="text-center">
+      <button
+        class="btn btn-primary"
+        onclick="compareJSONS(); this.blur()"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Tooltip on top"
+      >
+        Compare
+      </button>
+    </div>
+
+    <script src="lib/codemirror.js"></script>
+    <script src="mode/javascript.js"></script>
+    <script src="addon/fold/foldcode.js"></script>
+    <script src="addon/fold/foldgutter.js"></script>
+    <script src="addon/fold/bracefold.js"></script>
+    <script src="addon/fullscreen/fullscreen.js"></script>
+    <script src="addon/matchbrackets/matchbrackets.js"></script>
+    <script src="addon/lint/jsonlint.js"></script>
+    <script src="addon/lint/lint.js"></script>
+    <script src="addon/lint/json-lint.js"></script>
+    <script src="jQuery.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="flat.js"></script>
+    <script src="compare.js"></script>
+    <script src="organize.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

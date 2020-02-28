@@ -1,0 +1,96 @@
+body {
+  background: #000;
+  padding: 40px;
+}
+
+.CodeMirror-focused {
+  box-shadow: 0 0 10px #719ece;
+}
+
+.noDifference {
+  box-shadow: 0 0 20px #158d00;
+}
+
+.extra {
+  background-color: rgba(0, 255, 128, 0.472);
+}
+
+.different {
+  background-color: red !important;
+}
+
+.father {
+  background-color: grey;
+}
+
+button {
+  margin-top: 25px;
+}
+
+input {
+  border: 0;
+  background: transparent;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#inputCol {
+  display: flex;
+  justify-content: center;
+}
+
+.CodeMirror-gutters {
+  background: #333359;
+  border-right: 1px solid #333359;
+  box-shadow: 2px 0px 10px #111139;
+  margin-left: -1px;
+}
+
+/****************
+EDITOR SCROLL BAR
+****************/
+.CodeMirror-scrollbar-filler {
+  background: transparent;
+}
+.CodeMirror-vscrollbar-filler,
+.CodeMirror-hscrollbar-filler {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+  border-radius: 0 0 5px 0;
+  z-index: 2;
+}
+.CodeMirror-vscrollbar-filler {
+  width: 10px;
+  top: 70px;
+}
+.CodeMirror-hscrollbar-filler {
+  left: 30px;
+  height: 10px;
+}
+/* width */
+.CodeMirror-vscrollbar::-webkit-scrollbar {
+  width: 6px !important;
+}
+.CodeMirror-hscrollbar::-webkit-scrollbar {
+  height: 6px !important;
+}
+/* Track */
+.CodeMirror-vscrollbar::-webkit-scrollbar-track,
+.CodeMirror-hscrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+/* Handle */
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb,
+.CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
+  background: #111139 !important;
+  border-radius: 3px;
+}
+/* Handle on hover */
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb:hover,
+.CodeMirror-hscrollbar::-webkit-scrollbar-thumb:hover {
+  background: #11111f !important;
+}
