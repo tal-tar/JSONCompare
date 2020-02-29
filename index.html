@@ -1,11 +1,12 @@
 <html>
   <head>
-    <title>JSON Compare</title>
-    <link rel="icon" href="Assets/json-file-white.png" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta name="author" content="Tal the Bodek" />
+    <title>JSON Compare</title>
+    <link rel="icon" href="Assets/json-file-white.png" />
     <link rel="stylesheet" href="bootsrap.css" />
     <link rel="stylesheet" href="styling.css" />
     <link rel="stylesheet" href="lib/codemirror.css" />
@@ -96,7 +97,7 @@
         >
       </div>
     </div>
-    <div class="text-center">
+    <div class="row justify-content-center">
       <button
         class="btn btn-primary"
         onclick="compareJSONS(); this.blur()"
@@ -107,6 +108,7 @@
         Compare
       </button>
     </div>
+    <span class="credit">© Created by Tal the Bodek</span>
 
     <script src="lib/codemirror.js"></script>
     <script src="mode/javascript.js"></script>

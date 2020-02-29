@@ -3,7 +3,6 @@ let rightTextarea;
 let isPerfectON = false;
 
 // Initializes textareas
-
 (function () {
   let textareas = [leftTextarea, rightTextarea];
   $("textarea").each(function (index) {
@@ -212,10 +211,7 @@ function color(organizedFlatDiffObject) {
             ? $(this)[0].classList.add("extra")
             : $(this)[0].classList.add("different");
           $(this)[0].setAttribute("data-toggle", "tooltip");
-          if (path) {
-            let nicePath = path.replace(/\./g, " -> ");
-            $($(this)[0]).tooltip({ title: nicePath });
-          }
+          if (path) addTooltip($(this)[0], path);
         });
       });
     });
@@ -223,72 +219,8 @@ function color(organizedFlatDiffObject) {
   }
 }
 
-function colorV1(diff) {
-  function recursiveColor(obj) {}
-  // function colorExtra(extra) {
-  //   for (let key of Object.keys(extra)) {
-  //     $(`span.cm-string:contains(${key})`).each(function() {
-  //       if ($(this)[0].innerText === `"${key}"`)
-  //         $(this)[0].classList.add("extra");
-  //     });
-  //   }
-  // }
-
-  function colorDifference(difference) {
-    difference.forEach(function (element) {
-      $(`span.cm-string:contains(${element})`).each(function () {
-        if ($(this)[0].innerText === `"${element}"`)
-          $(this)[0].classList.add("different");
-      });
-    });
-  }
-
-  colorExtra(diff.extraO1);
-  colorExtra(diff.extraO2);
-  colorDifference(diff.difference);
-}
-
-function colorV2(diff) {
-  function colorTextarea() {
-    $(".main").each(function () {
-      let thisDiv = $(this)[0].id;
-      diff.different.forEach((pathArray) => {
-        pathArray.forEach((element, index) => {
-          $(`div#right span.cm-property:contains(${element})`).each(
-            function () {
-              // check classlist
-              let currentClassList = $(this)[0].classList;
-              // ^^^^^
-              if ($(this)[0].innerText === `"${element}"`)
-                if (
-                  index + 1 === pathArray.length &&
-                  !currentClassList.contains("different")
-                ) {
-                  currentClassList.add("different");
-                  return false;
-                } else if (
-                  !currentClassList.contains("father") &&
-                  !currentClassList.contains("different")
-                ) {
-                  currentClassList.add("father");
-                  return false;
-                }
-            }
-          );
-        });
-      });
-    });
-  }
-
-  colorTextarea(true);
-  // diff.forEach(function (item) {
-  //   let elementsToColor = item.reduce(function (acc, cur) {
-  //     return acc.filter(function () {
-  //       return $(this).text() === `"${cur}"`;
-  //     });
-  //   }, $(".cm-property"));
-  //   elementsToColor.length === 2
-  //     ? $(elementsToColor).addClass("different")
-  //     : $(elementsToColor).addClass("extra");
-  // });
-}
+const addTooltip = (element, path) => {
+  $(element).tooltip({
+    title: path.replace(/\.(0|[1-9][0-9]*)/g, "[$1]").replace(/\./g, " -> "),
+  });
+};
