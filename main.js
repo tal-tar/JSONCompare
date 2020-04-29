@@ -2,6 +2,13 @@ let leftTextarea;
 let rightTextarea;
 let isPerfectON = false;
 
+// WIP tooltip
+(() => {
+  const message =
+    "Please keep in mind this is WIP as there are still some bugs that need to be fixed<br><br>  <b>Known Issues:</b><br>&bull; An empty object/array inside an array break the app<br>&bull; [ ] { } Signs in a string break the app<br>&bull; Some CSS bugs<br><br>Other than that the application should be fully usable";
+  $(".WIP").tooltip({ title: message, html: true });
+})();
+
 // Initializes textareas
 (function () {
   let textareas = [leftTextarea, rightTextarea];
